@@ -4,3 +4,19 @@
     name: ansible-pull
     minute: 0
     job: ANSIBLE_LOG_PATH="/var/log/ansible.log" ansible-pull -U https://github.com/GraywellDesign/ansible playbooks/servers/server.yml 2>&1 1>/dev/null
+- name: stop jumpcloud service
+  ansible.builtin.systemd:
+    name: jcagent.service
+    state: stopped
+  when: "'jcagent' in ansible_facts.packages"
+- name: uninstall jumpcloud agent
+  ansible.builtin.apt:
+    name: jcagent
+    state: absent
+  when: "'jcagent' in ansible_facts.packages"
+  register: jcagent
+- name: remove jcagent directory
+  ansible.builtin.file:
+    path: /opt/jc
+    state: absent
+  when: jcagent is defined and jcagent.changed
