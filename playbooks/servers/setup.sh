@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+export DEBIAN_FRONTEND=noninteractive
+
 # If Arch Linux
 if grep -q 'Arch Linux' /etc/os-release
 then
