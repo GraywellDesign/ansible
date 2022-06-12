@@ -21,12 +21,17 @@
     become: true
   - name: install roles in requirements.yml
     command: ansible-galaxy install -r roles/requirements.yml
-  - name: add ansible ppa
-    apt_repository:
-      repo: 'ppa:ansible/ansible'
+  - name: install python3 pip
+    apt:
+      name: python3-pip
       state: present
+      update_cache: yes
+  - name: install latest version of ansible
+    command: pip3 install ansible 
+    ignore_errors: True
   - name: upgrade ansible
     apt:
       name: ansible
       update_cache: yes
-      state: latest
+      state: absent
+    ignore_errors: True
