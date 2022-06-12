@@ -13,7 +13,7 @@
     state: stopped
   when: "'jcagent' in ansible_facts.packages"
 - name: uninstall jumpcloud agent
-  ansible.builtin.command:
+  ansible.builtin.apt:
     name: jcagent
     state: absent
   when: "'jcagent' in ansible_facts.packages"
