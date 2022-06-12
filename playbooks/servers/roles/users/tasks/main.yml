@@ -1,0 +1,5 @@
+---
+- name: import esalas.yml tasks
+  import_tasks: esalas.yml
+- name: import esalas.yml tasks
+  import_tasks: esalas.yml
