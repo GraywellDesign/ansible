@@ -1,5 +1,3 @@
 ---
 - name: import sshd-config.yml tasks
   import_tasks: sshd-config.yml
-- name: import ufw.yml tasks
-  import_tasks: ufw.yml
