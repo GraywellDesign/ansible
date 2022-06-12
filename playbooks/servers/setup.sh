@@ -2,8 +2,7 @@
 
 export DEBIAN_FRONTEND=noninteractive
 
-apt-get update && apt-get dist-upgrade -y
-apt-get install -y python3-pip vim git curl \
+apt-get update && apt-get install -y python3-pip vim git curl \
   && echo 'Installed base packages' | tee -a /opt/setup.log
 
 pip3 install ansible
