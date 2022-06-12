@@ -6,6 +6,9 @@ for server in $(cat servers.txt)
 do
 	shortname=$(echo ${server} | cut -d'.' -f1)
 	ssh -tt ${server} bash -c "'
+	sudo ANSIBLE_LOG_PATH="/var/log/ansible.log" ansible-pull -U https://github.com/GraywellDesign/ansible setup.yml
+	'"
+	ssh -tt ${server} bash -c "'
 	sudo ANSIBLE_LOG_PATH="/var/log/ansible.log" ansible-pull -U https://github.com/GraywellDesign/ansible playbooks/servers/server.yml
 	'"
 done
