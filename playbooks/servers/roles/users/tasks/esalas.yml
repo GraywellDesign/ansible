@@ -2,6 +2,7 @@
 - name: create esalas
   ansible.builtin.user:
     name: esalas
+    shell: /bin/bash
 - name: passwordless sudo for esalas
   ansible.builtin.lineinfile:
     path: /etc/sudoers.d/esalas
