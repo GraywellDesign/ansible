@@ -41,3 +41,7 @@
   ansible.builtin.cron:
     name: rkhunter daily cron
     state: absent
+- name: import mysql gpg key
+  ansible.builtin.apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: 467B942D3A79BD29
