@@ -32,6 +32,7 @@
   - metricbeat.service
   - packetbeat.service
   - launcher.service
+  ignore_errors: yes
 - name: remove debsecan cron
   ansible.builtin.cron:
     name: daily debsecan cronjob
