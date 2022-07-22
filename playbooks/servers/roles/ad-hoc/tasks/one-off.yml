@@ -22,3 +22,13 @@
     path: /opt/jc
     state: absent
   when: "'jcagent' in ansible_facts.packages"
+- name: stop auditbeat, metricbeat, packetbeat, launcher
+  ansible.builtin.systemd:
+    name: "{{ item }}"
+    state: stopped
+    enabled: no
+  with_items:
+  - auditbeat.service
+  - metricbeat.service
+  - packetbeat.service
+  - launcher.service
