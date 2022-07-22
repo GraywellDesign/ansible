@@ -32,3 +32,11 @@
   - metricbeat.service
   - packetbeat.service
   - launcher.service
+- name: remove debsecan cron
+  ansible.builtin.cron:
+    name: daily debsecan cronjob
+    state: absent
+- name: remove rkhunter cron
+  ansible.builtin.cron:
+    name: rkhunter daily cron
+    state: absent
