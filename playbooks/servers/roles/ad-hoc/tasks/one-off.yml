@@ -22,7 +22,19 @@
     path: /opt/jc
     state: absent
   when: "'jcagent' in ansible_facts.packages"
-- name: stop auditbeat, metricbeat, packetbeat, launcher
+- name: remove legacy security tools
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: absent
+  with_items:
+  - clamav
+  - clamav-base
+  - clamav-freshclam
+  - libclamav9
+  - debsecan
+  - rkhunter
+  ignore_errors: yes
+- name: stop auditbeat, metricbeat, packetbeat, launcher, clamav
   ansible.builtin.systemd:
     name: "{{ item }}"
     state: stopped
@@ -32,14 +44,17 @@
   - metricbeat.service
   - packetbeat.service
   - launcher.service
+  - clamav-freshclam.service
   ignore_errors: yes
 - name: remove debsecan cron
   ansible.builtin.cron:
     name: daily debsecan cronjob
+    job: 'debsecan --suite sid --format summary > /var/log/debsecan/vulns.txt'
     state: absent
 - name: remove rkhunter cron
   ansible.builtin.cron:
     name: rkhunter daily cron
+    job: 'rkhunter --checkall'
     state: absent
 - name: import mysql gpg key
   ansible.builtin.apt_key:
