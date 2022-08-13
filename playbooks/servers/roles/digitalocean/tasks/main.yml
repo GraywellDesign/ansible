@@ -1,0 +1,3 @@
+---
+- name: install digitalocean's agent
+  command: 'wget -qO- https://repos-droplet.digitalocean.com/install.sh | bash'
