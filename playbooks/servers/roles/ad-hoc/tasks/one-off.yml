@@ -29,8 +29,6 @@
   with_items:
   - clamav
   - clamav-base
-  - clamav-freshclam
-  - libclamav9
   - debsecan
   - rkhunter
   ignore_errors: yes
