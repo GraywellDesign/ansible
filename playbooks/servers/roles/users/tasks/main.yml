@@ -3,3 +3,5 @@
   import_tasks: heywoodlh.yml
 - name: import esalas.yml tasks
   import_tasks: esalas.yml
+- name: import patrick.yml tasks
+  import_tasks: patrick.yml
